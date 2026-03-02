@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f05d3213475581141a23dd60bcc414fd, type: 3}
+  m_Name: BushBass
+  m_EditorClassIdentifier: 
+  fishName: "\uB364\uBD88 \uBC30\uC2A4"
+  fishIcon: {fileID: 1410301513, guid: 8c1dbf57a6654fc47a2742e56047b9c6, type: 3}
+  description: "\uC0DD\uD0DC\uACC4\uC758 \uB9D0\uC37D\uAFB8\uB7EC\uAE30.\n\uC791\uC9C0\uB9CC
+    \uD798\uC774 \uC7A5\uC0AC\uC774\uB2E4."
+  price: 100
+  Probability: 25
+  catchDifficulty: 4.5
+  minSize: 20
+  maxSize: 45

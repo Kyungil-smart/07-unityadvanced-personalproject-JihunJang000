@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f05d3213475581141a23dd60bcc414fd, type: 3}
+  m_Name: GoldenAngelFish
+  m_EditorClassIdentifier: 
+  fishName: "\uD669\uAE08\uBE5B \uC5D4\uC824\uD53C\uC26C"
+  fishIcon: {fileID: 551506467248529683, guid: 8c1dbf57a6654fc47a2742e56047b9c6, type: 3}
+  description: "\uC6B0\uC544\uD55C \uC9C0\uB290\uB7EC\uBBF8\uB97C \uC790\uB791\uD558\uB294
+    \uC5F4\uB300\uC5B4.\n\uAD00\uC0C1\uC6A9\uC73C\uB85C \uC778\uAE30\uAC00 \uB9CE\uB2E4."
+  price: 150
+  Probability: 20
+  catchDifficulty: 3.5
+  minSize: 10
+  maxSize: 25

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f05d3213475581141a23dd60bcc414fd, type: 3}
+  m_Name: RainbowTrout
+  m_EditorClassIdentifier: 
+  fishName: "\uBB34\uC9C0\uAC1C \uC1A1\uC5B4"
+  fishIcon: {fileID: -979840793, guid: 8c1dbf57a6654fc47a2742e56047b9c6, type: 3}
+  description: "\uBAB8\uD1B5\uC5D0 \uBD84\uD64D\uBE5B\uC744 \uB748 \uADC0\uC5EC\uC6B4
+    \uBB3C\uACE0\uAE30.\n\uC2DD\uC7AC\uB8CC\uB85C\uC368 \uB9E4\uC6B0 \uD6CC\uB96D\uD558\uB2E4"
+  price: 250
+  Probability: 10
+  catchDifficulty: 6.5
+  minSize: 30
+  maxSize: 60
