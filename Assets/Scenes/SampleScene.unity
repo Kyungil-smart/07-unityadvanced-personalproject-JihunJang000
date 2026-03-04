@@ -80980,7 +80980,7 @@ PrefabInstance:
     - target: {fileID: 7414499689241271894, guid: 56d11cdc11d41f64994b66ad456c20b3, type: 3}
       propertyPath: minigamePanel
       value: 
-      objectReference: {fileID: 34138563}
+      objectReference: {fileID: 145993578}
     - target: {fileID: 7414499689241271894, guid: 56d11cdc11d41f64994b66ad456c20b3, type: 3}
       propertyPath: successZoneRect
       value: 

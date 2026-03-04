@@ -1,13 +1,16 @@
 using UnityEngine;
 using System.Collections; 
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 5f;
     
     [Header("낚시 설정")]
-    public LayerMask waterLayer;
+    public LayerMask freshWaterLayer; // 민물 레이어
+    public LayerMask saltWaterLayer;  // 바닷물 레이어
+
     public CameraFollow cameraFollow; 
     
     public RectTransform successZoneRect; //성공 범위
@@ -23,10 +26,14 @@ public class PlayerMovement : MonoBehaviour
     private bool isFishing = false;
     private bool isCasting = false; 
     
-    // 🌟 낚시 미니게임 관련 변수
+	private bool isSaltWaterFishing = false; // 바닷물인지 체크
+
+    // 낚시 미니게임 관련 변수
     private bool isMinigameActive = false; 
     private FishData currentTargetFish; 
     
+	public bool isDialogueActive = false; //대화창 켜져있는지 확인
+
     // 시계바늘 타이밍 시스템
     private float needlePos = 0f;       // 바늘의 현재 위치 (0.0 ~ 1.0)
     private float needleDir = 1f;       // 바늘의 이동 방향 (1=오른쪽, -1=왼쪽)
@@ -47,6 +54,13 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+		if (isDialogueActive)
+        {
+            rb.linearVelocity = Vector2.zero;
+            animator.SetBool("isWalking", false);
+            return;
+        }
+
         if (!isFishing)
         {
             HandleMovementInput();
@@ -70,13 +84,13 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        // 🌟 미니게임이 켜져 있을 때 바늘을 왕복 이동시킵니다.
+        // 미니게임이 켜져 있을 때 바늘을 왕복 이동시킵니다.
         if (isMinigameActive)
         {
             // 속도와 방향에 맞춰 바늘 위치 이동
             needlePos += needleDir * needleSpeed * Time.deltaTime;
 
-            // 양쪽 끝(0.0 또는 1.0)에 도달하면 튕겨서 반대로 돌아갑니다. (Ping-pong 효과)
+            // 양쪽 끝(0.0 또는 1.0)에 도달하면 튕겨서 반대로 돌아감
             if (needlePos >= 1f)
             {
                 needlePos = 1f;
@@ -123,18 +137,27 @@ public class PlayerMovement : MonoBehaviour
         Vector2 targetPos = visualCenter + new Vector2(targetX, -2f);
         debugTargetPos = targetPos;
         
-        Collider2D waterHit = Physics2D.OverlapCircle(targetPos, 0.1f, waterLayer);
+        Collider2D freshHit = Physics2D.OverlapCircle(targetPos, 0.1f, freshWaterLayer);
+        Collider2D saltHit = Physics2D.OverlapCircle(targetPos, 0.1f, saltWaterLayer);
         
-        if (waterHit != null)
+        if (freshHit != null)
         {
-            Debug.Log("💦 물 발견! 찌를 던집니다.");
+            isSaltWaterFishing = false; // 민물 낚시 모드
+            Debug.Log("민물 발견! 미끼를 던집니다");
+            StartCoroutine(CastingRoutine(false));
+        }
+        else if (saltHit != null)
+        {
+            isSaltWaterFishing = true; // 바다 낚시 모드
+            Debug.Log("바다 발견! 미끼를 던집니다");
             StartCoroutine(CastingRoutine(false));
         }
         else
         {
-            Debug.Log("❌ 물이 없음 (위치: " + targetPos + ")");
+            Debug.Log("물이 없음 (위치: " + targetPos + ")");
             StartCoroutine(CastingRoutine(true));
         }
+        
     }
 
     IEnumerator CastingRoutine(bool isMissed)
@@ -155,16 +178,21 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator WaitBiteRoutine()
     {
         float waitTime = Random.Range(1.0f, 3.0f);
-        Debug.Log($"[시스템] {waitTime:F1}초 후에 입질이 옵니다...");
+        Debug.Log($"{waitTime:F1}초 후에 입질이 옵니다");
         yield return new WaitForSeconds(waitTime);
         
         // 1. 입질 시 물고기 결정
-        if (FishingManager.Instance != null && FishingManager.Instance.freshWaterFishDB.Count > 0)
+        if (FishingManager.Instance != null)
         {
-            currentTargetFish = FishingManager.Instance.GetRandomFish(FishingManager.Instance.freshWaterFishDB);
+            List<FishData> targetDB = isSaltWaterFishing ? FishingManager.Instance.saltWaterFishDB : FishingManager.Instance.freshWaterFishDB;
+
+            if (targetDB.Count > 0)
+            {
+                currentTargetFish = FishingManager.Instance.GetRandomFish(targetDB);
+            }
         }
 
-        // 🌟 2. 미니게임 세팅 (난이도에 따라 구간과 속도가 변합니다)
+        // 난이도에 따라 구간과 속도가 변함
         float diff = currentTargetFish != null ? currentTargetFish.catchDifficulty : 1f;
         
         // 난이도가 높을수록 바늘이 빨라집니다.
@@ -193,27 +221,48 @@ public class PlayerMovement : MonoBehaviour
         needleDir = 1f;
         isMinigameActive = true;
 
-        Debug.Log($"❗️ 입질이 왔습니다! [{currentTargetFish.fishName}]");
+        Debug.Log($"물고기 입질 시작 [{currentTargetFish.fishName}]");
         if (minigamePanel != null) minigamePanel.SetActive(true); //UI에 띄워줌.
-        Debug.Log($"🎯 타이밍 목표: {successZoneMin:F2} ~ {successZoneMax:F2} 사이일 때 Space를 누르세요!");
+        
     }
 
-    // 🌟 스페이스바를 눌렀을 때 실행되는 판정 함수
+    // 스페이스바를 눌렀을 때 실행되는 판정 함수
     void AttemptCatch()
     {
-        isMinigameActive = false; // 미니게임 즉시 종료 (바늘 멈춤)
+        isMinigameActive = false; 
         
         if (minigamePanel != null) minigamePanel.SetActive(false);
 
         // 바늘 위치가 성공 구간 안에 있는지 검사
         if (needlePos >= successZoneMin && needlePos <= successZoneMax)
         {
-            Debug.Log($"✨ 낚시 대성공! (바늘 위치: {needlePos:F2}) \n잡은 물고기: {currentTargetFish.fishName}");
+            // 물고기 크기를 랜덤으로 결정
+            float caughtSize = Random.Range(currentTargetFish.minSize, currentTargetFish.maxSize);
+
+            // 🌟 Debug.Log 대신 대화창 호출 (물고기 이미지도 함께 넘겨줍니다!)
+            if (DialogueManager.Instance != null)
+            {
+                DialogueManager.Instance.ShowCatchDialogue(
+                    $"와! {currentTargetFish.fishName}을(를) 낚았다!\n크기: {caughtSize:F1}cm", 
+                    currentTargetFish.fishIcon
+                );
+            }
+            
+            if (FishingManager.Instance != null)
+            {
+                FishingManager.Instance.AddFishRecord(currentTargetFish, caughtSize);
+            }
+
             FinishFishing(true);
         }
         else
         {
-            Debug.Log($"❌ 실패! (바늘 위치: {needlePos:F2}) \n타이밍을 놓쳐 물고기가 도망갔습니다.");
+            // 실패했을때 대화창 띄우기 (이미지 없이 일반 대화창으로)
+            if (DialogueManager.Instance != null)
+            {
+                DialogueManager.Instance.ShowDialogue("앗 타이밍을 놓쳐서 물고기가 도망갔다...");
+            }
+
             FinishFishing(false);
         }
     }
@@ -237,7 +286,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!isFishing)
+        if (!isFishing && !isDialogueActive)
         {
             rb.MovePosition(rb.position + moveInput.normalized * speed * Time.fixedDeltaTime);
         }
