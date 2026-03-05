@@ -85,7 +85,7 @@ public class DialogueManager : MonoBehaviour
         dialoguePanel.SetActive(true);
         if (player != null) player.isDialogueActive = true;
 
-        // 창이 열린 현재 프레임을 기록합니다.
+        // 창이 열린 현재 프레임을 기록
         openedFrame = Time.frameCount;
     }
     
@@ -93,8 +93,7 @@ public class DialogueManager : MonoBehaviour
     public void CloseDialogue()
     {
         dialoguePanel.SetActive(false);
-        
-        // 플레이어의 움직임을 다시 풀어줍니다
+  
         if (player != null)
         {
             player.isDialogueActive = false;
