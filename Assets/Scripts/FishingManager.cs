@@ -99,7 +99,7 @@ public class FishingManager : MonoBehaviour
                 unlockedCount++;
             }
         }
-        // 모은 개수가 민물고기 DB 전체 개수와 같거나 크면 true(완성) 반환
+        // 모은 개수가 민물고기 DB 전체 개수와 같거나 크면 true 반환
         return unlockedCount >= freshWaterFishDB.Count;
     }
 

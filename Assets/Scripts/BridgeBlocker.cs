@@ -13,7 +13,7 @@ public class BridgeBlocker : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            // 🌟 중복 실행 방지: 이미 대화창이 떠있는데 계속 부딪히는 것을 막아줍니다.
+            // 계속 부딪히는 것을 방지
             PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
             if (player != null && player.isDialogueActive) return;
 

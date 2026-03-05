@@ -6,17 +6,17 @@ public class EncyclopediaUI : MonoBehaviour
     [Header("UI 연결")]
     public GameObject encyclopediaPanel; // 도감 창 전체
     public Transform contentTransform;   // Grid Layout Group이 붙어있는 Content
-    public GameObject fishSlotPrefab;    // 아까 만든 FishSlot 프리팹
+    public GameObject fishSlotPrefab;    // FishSlot  프리팹
 
     void Start()
     {
-        // 시작할 때 도감 창은 숨겨둡니다.
+        // 시작할 때 도감 창은 숨기기
         encyclopediaPanel.SetActive(false);
     }
 
     void Update()
     {
-        // 테스트용: 키보드 'R' 키를 누르면 도감이 열리고 닫힙니다.
+        // 도감 온오프
         if (Input.GetKeyDown(KeyCode.R))
         {
             if (encyclopediaPanel.activeSelf)
@@ -64,5 +64,11 @@ public class EncyclopediaUI : MonoBehaviour
 
             slotUI.Setup(fish, record);
         }
+    }
+
+	public void CloseEncyclopedia()
+    {
+		Debug.Log("닫기 버튼이 눌렸습니다.");
+        encyclopediaPanel.SetActive(false);
     }
 }

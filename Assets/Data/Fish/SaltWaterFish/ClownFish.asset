@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f05d3213475581141a23dd60bcc414fd, type: 3}
   m_Name: ClownFish
   m_EditorClassIdentifier: 
-  fishName: 
+  fishName: "\uD770\uB3D9\uAC00\uB9AC"
   fishIcon: {fileID: -113980459, guid: bc01f149926334b41bfc66cc960ee065, type: 3}
-  description: 
-  price: 0
-  Probability: 0
-  catchDifficulty: 0
-  minSize: 0
-  maxSize: 0
+  description: "\uB9D0\uBBF8\uC798\uACFC \uACF5\uC0DD\uD558\uB294 \uADC0\uC5EC\uC6B4
+    \uBC14\uB2F7\uBB3C\uACE0\uAE30"
+  price: 1200
+  Probability: 25
+  catchDifficulty: 6
+  minSize: 8
+  maxSize: 15

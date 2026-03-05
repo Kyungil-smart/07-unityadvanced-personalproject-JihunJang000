@@ -17,7 +17,7 @@ MonoBehaviour:
   description: "\uC0C9\uAE54\uC774 \uC544\uB984\uB2E4\uC6B4 \uCE5C\uADFC\uD55C \uBB3C\uACE0\uAE30.\n\uBC30\uAC00
     \uBE75\uBE75\uD558\uB2E4"
   price: 30
-  Probability: 40
+  Probability: 30
   catchDifficulty: 1.5
   minSize: 5
   maxSize: 15

@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f05d3213475581141a23dd60bcc414fd, type: 3}
   m_Name: GoldenPufferfish
   m_EditorClassIdentifier: 
-  fishName: 
+  fishName: "\uD669\uAE08 \uBCF5\uC5B4"
   fishIcon: {fileID: -1084371287, guid: bc01f149926334b41bfc66cc960ee065, type: 3}
-  description: 
-  price: 0
-  Probability: 0
-  catchDifficulty: 0
-  minSize: 0
-  maxSize: 0
+  description: "\uC704\uD611\uC744 \uB290\uB07C\uBA74 \uBAB8\uC744 \uBD80\uD480\uB9AC\uB294
+    \uBB3C\uACE0\uAE30.\n\uB3C5\uC744 \uAC00\uC9C0\uACE0 \uC788\uC9C0\uB9CC \uCD5C\uACE0\uAE09
+    \uC2DD\uC7AC\uB8CC"
+  price: 4500
+  Probability: 15
+  catchDifficulty: 8.5
+  minSize: 20
+  maxSize: 45

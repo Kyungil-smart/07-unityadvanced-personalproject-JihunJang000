@@ -18,7 +18,7 @@ MonoBehaviour:
     \uC9C0\uB0B4\uB294 \uBB3C\uACE0\uAE30.\n\uC218\uC5FC\uC744 \uB354\uB4EC\uC5B4\uC11C
     \uBA39\uC774\uB97C \uCC3E\uB294\uB2E4.\n\n"
   price: 450
-  Probability: 5
-  catchDifficulty: 8.5
+  Probability: 10
+  catchDifficulty: 7.75
   minSize: 40
   maxSize: 90

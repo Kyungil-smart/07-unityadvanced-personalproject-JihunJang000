@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f05d3213475581141a23dd60bcc414fd, type: 3}
   m_Name: SeaCrab
   m_EditorClassIdentifier: 
-  fishName: 
+  fishName: "\uAF43\uAC8C"
   fishIcon: {fileID: -421795030, guid: bc01f149926334b41bfc66cc960ee065, type: 3}
-  description: 
-  price: 0
-  Probability: 0
-  catchDifficulty: 0
-  minSize: 0
-  maxSize: 0
+  description: "\uB2E8\uB2E8\uD55C \uAC11\uC637\uACFC \uC9D1\uAC8C\uBC1C\uC744 \uAC00\uC9C0\uACE0
+    \uC788\uB294 \uAC8C.\n\uC218\uC728\uC774 \uC88B\uB2E4 "
+  price: 2500
+  Probability: 20
+  catchDifficulty: 7.5
+  minSize: 15
+  maxSize: 25

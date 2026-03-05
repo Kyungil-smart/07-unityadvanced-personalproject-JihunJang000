@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f05d3213475581141a23dd60bcc414fd, type: 3}
   m_Name: SteelTuna
   m_EditorClassIdentifier: 
-  fishName: 
+  fishName: "\uAC15\uCCA0 \uCC38\uCE58"
   fishIcon: {fileID: -315606446, guid: bc01f149926334b41bfc66cc960ee065, type: 3}
-  description: 
-  price: 0
-  Probability: 0
-  catchDifficulty: 0
-  minSize: 0
-  maxSize: 0
+  description: "\uC740\uBE5B\uC73C\uB85C \uBE5B\uB098\uB294 \uAC11\uC637\uC744 \uC785\uC740
+    \uCC38\uCE58"
+  price: 10000
+  Probability: 10
+  catchDifficulty: 9
+  minSize: 80
+  maxSize: 150
