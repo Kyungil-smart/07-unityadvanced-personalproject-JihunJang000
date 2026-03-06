@@ -33,11 +33,15 @@ public class FishingSystem : MonoBehaviour
         animator.SetBool("isWalking", false);
         animator.SetBool("isFishing", true); 
 
+		//에셋의 pivot위치가 0,0이 아니라서 보정
         Vector2 visualCenter = (Vector2)transform.position + new Vector2(cameraFollow.offset.x, cameraFollow.offset.y);
+
+		//낚시 미끼 떨어지는 곳 계산.
         float targetX = isFacingLeft ? -2f : 2f;
         Vector2 targetPos = visualCenter + new Vector2(targetX, -2f);
         debugTargetPos = targetPos;
         
+		//민물 레이어 인식하는 것과 바닷물레이어 인식하는 두개
         Collider2D freshHit = Physics2D.OverlapCircle(targetPos, 0.1f, freshWaterLayer);
         Collider2D saltHit = Physics2D.OverlapCircle(targetPos, 0.1f, saltWaterLayer);
         
@@ -77,7 +81,6 @@ public class FishingSystem : MonoBehaviour
     IEnumerator WaitBiteRoutine()
     {
         float waitTime = Random.Range(1.0f, 3.0f);
-        Debug.Log($"{waitTime:F1}초 후에 입질이 옵니다");
         yield return new WaitForSeconds(waitTime);
         
         // 입질 시 물고기 결정

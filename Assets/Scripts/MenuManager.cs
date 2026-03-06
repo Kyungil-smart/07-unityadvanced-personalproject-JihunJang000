@@ -8,7 +8,7 @@ public class MenuManager : MonoBehaviour
 
     void Start()
     {
-        // 시작할 때 메뉴와 조작법 창은 숨겨둡니다
+        // 시작할 때 메뉴와 조작법 창은 숨겨둠
         if (menuPanel != null) menuPanel.SetActive(false);
         if (controlsPanel != null) controlsPanel.SetActive(false); 
     }
@@ -23,12 +23,12 @@ public class MenuManager : MonoBehaviour
             {
                 CloseControls();
             }
-            // 메뉴창이 열려있다면 메뉴를 닫습니다.
+            // 메뉴창이 열려있다면 메뉴를 닫음
             else if (menuPanel.activeSelf)
             {
                 CloseMenu();
             }
-            // 둘 다 안 열려있으면 메뉴를 엽니다.
+            // 둘 다 안 열려있으면 메뉴열기
             else
             {
                 OpenMenu();
@@ -60,7 +60,7 @@ public class MenuManager : MonoBehaviour
 
     public void QuitGame()
     {
-        Debug.Log("게임을 종료합니다!");
+        Debug.Log("게임을 종료합니다");
         Application.Quit();
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;

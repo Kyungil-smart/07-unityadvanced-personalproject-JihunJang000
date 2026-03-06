@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &24802703 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 716363388615671391, guid: 56d11cdc11d41f64994b66ad456c20b3, type: 3}
+  m_PrefabInstance: {fileID: 5194126328389688926}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &34138563
 GameObject:
   m_ObjectHideFlags: 0
@@ -399,6 +404,27 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4436042953458847057, guid: 56d11cdc11d41f64994b66ad456c20b3, type: 3}
   m_PrefabInstance: {fileID: 5194126328389688926}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &144679225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 24802703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fddce4edea16521428d92e88163d99ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  freshWaterLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  saltWaterLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  cameraFollow: {fileID: 519420034}
+  minigameUI: {fileID: 462694982}
+  isFishing: 0
 --- !u!1 &145993578
 GameObject:
   m_ObjectHideFlags: 0
@@ -1768,6 +1794,7 @@ GameObject:
   - component: {fileID: 462694978}
   - component: {fileID: 462694980}
   - component: {fileID: 462694981}
+  - component: {fileID: 462694982}
   m_Layer: 0
   m_Name: UIManger
   m_TagString: Untagged
@@ -1834,6 +1861,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuPanel: {fileID: 1874301549}
   controlsPanel: {fileID: 1500259926}
+--- !u!114 &462694982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 462694977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cf7aec55b126934c9a89150fdf35d0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minigamePanel: {fileID: 145993578}
+  needleSlider: {fileID: 145993580}
+  successZoneRect: {fileID: 1350851896}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -96052,7 +96094,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 716363388615671391, guid: 56d11cdc11d41f64994b66ad456c20b3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 144679225}
   m_SourcePrefab: {fileID: 100100000, guid: 56d11cdc11d41f64994b66ad456c20b3, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

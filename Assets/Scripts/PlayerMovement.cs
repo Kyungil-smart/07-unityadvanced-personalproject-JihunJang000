@@ -20,10 +20,19 @@ public class PlayerMovement : MonoBehaviour
         fishingSystem = GetComponent<FishingSystem>();
     }
 
+    void FixedUpdate()
+    {
+        if (fishingSystem != null && !fishingSystem.isFishing && !isDialogueActive) //낚시중이랑 대화창 떳을떄 안움직이게
+        {
+            rb.MovePosition(rb.position + moveInput.normalized * speed * Time.fixedDeltaTime);
+        }
+    }
+    
     void Update()
     {
         if (Time.timeScale == 0f) return; // 메뉴 열면 멈추게
         
+        //대화창 on이면 움직이기 불가능
         if (isDialogueActive)
         {
             rb.linearVelocity = Vector2.zero;
@@ -31,6 +40,8 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
+        
+        // 낚시 하고 있지 않을때 움직이기 가능
         if (fishingSystem != null && !fishingSystem.isFishing)
         {
             HandleMovementInput();
@@ -54,11 +65,5 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("isWalking", moveInput.magnitude > 0);
     }
 
-    void FixedUpdate()
-    {
-        if (fishingSystem != null && !fishingSystem.isFishing && !isDialogueActive) //낚시중이랑 대화창 떳을떄 안움직이게
-        {
-            rb.MovePosition(rb.position + moveInput.normalized * speed * Time.fixedDeltaTime);
-        }
-    }
+    
 }
